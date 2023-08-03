@@ -1,9 +1,9 @@
-# Your Project's Title...
-Your project's description...
+# Charter Smart Cities
+AEM Franklin Website
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.hlx.page/
-- Live: https://main--{repo}--{owner}.hlx.live/
+- Preview: https://main--spectrum-smartcities--hlxsites.hlx.page/
+- Live: https://main--spectrum-smartcities--hlxsites.hlx.live/
 
 ## Installation
 
