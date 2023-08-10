@@ -33,7 +33,7 @@
   --body-font-size-xs: 16px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 38px;
+  --heading-font-size-xxl: 2.8rem;
   --heading-font-size-xl: 30px;
   --heading-font-size-l: 32px;
   --heading-font-size-m: 24px;
@@ -56,7 +56,7 @@
 
 @media (min-width: 900px) {
   :root {
-    --heading-font-size-xxl: 98px;
+    --heading-font-size-xxl: 5.7vw;
     --heading-font-size-xl: 40px;
     --heading-font-size-l: 36px;
     --heading-font-size-m: 30px;
@@ -244,6 +244,7 @@ main img {
 }
 
 main .section {
+  position: relative;
   padding: 16px;
   margin-bottom: 60px;
 }

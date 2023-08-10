@@ -11,11 +11,16 @@
 }
 
 .section.as-columns.carousel-container > .carousel-wrapper > div {
-  position: absolute;
-  right: 0;
   display: flex;
   justify-content: flex-end;
-  margin: 100px 0;
+}
+
+@media (min-width: 900px) {
+  .section.as-columns.carousel-container > .carousel-wrapper > div {
+    position: absolute;
+    right: 0;
+    margin: 100px 0;
+  }
 }
 
 .viewport {
