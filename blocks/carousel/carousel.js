@@ -3,50 +3,41 @@ import {
 } from '../../scripts/scripts.js';
 
 export default async function decorate(blockEl) {
-  createEl('div', {
+  const pictureEls = blockEl.querySelectorAll('picture');
+
+  const carouselEl = createEl('div', {
     class: 'viewport',
   }, `
     <div class="carousel-frame">
-      <div class="carousel">
+      <div class="carousel-content">
         <ul class="scroll">
-          <li class="scroll-item-outer">
-            <div class="scroll-item">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Cute_grey_kitten.jpg/1280px-Cute_grey_kitten.jpg" alt="Picture of a gray kitten looking at the camera" />
-            </div>
-          </li>
-          <li class="scroll-item-outer">
-            <div class="scroll-item">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg" alt="Picture of a gray kitten looking at a branch"/>
-            </div>
-          </li>
-          <li class="scroll-item-outer">
-            <div class="scroll-item">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Red_Kitten_01.jpg/1280px-Red_Kitten_01.jpg" alt="Picture of an orange kitten looking at the camera" />
-            </div>
-          </li>
-          <li class="scroll-item-outer">
-            <div class="scroll-item">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Youngkitten.JPG/1280px-Youngkitten.JPG" alt="Picture of a young kitten opening its eyes"/>
-            </div>
-          </li>
         </ul>
       </div>
     </div>
     <ul class="indicators">
-      <li class="indicator">
-        <button class="indicator-button" aria-pressed="true"></button>
-      </li>
-      <li class="indicator">
-        <button class="indicator-button"></button>
-      </li>
-      <li class="indicator">
-        <button class="indicator-button"></button>
-      </li>
-      <li class="indicator">
-        <button class="indicator-button"></button>
-      </li>
     </ul>
-  `, blockEl);
+  `);
+
+  const scrollEl = carouselEl.querySelector('.scroll');
+  const indicatorsEl = carouselEl.querySelector('.indicators');
+
+  pictureEls.forEach((pictureEl) => {
+    createEl('li', {
+      class: 'scroll-item-outer',
+    }, `
+      <div class="scroll-item">
+        ${pictureEl.outerHTML}
+      </div>
+    `, scrollEl);
+
+    createEl('li', {
+      class: 'indicator',
+    }, `
+      <button class="indicator-button"></button>
+    `, indicatorsEl);
+  });
+
+  blockEl.innerHTML = carouselEl.outerHTML;
 
   function easingOutQuint(x, t, b, c, d) {
     const addT = (t1, t2) => t1 + t2;
@@ -104,7 +95,9 @@ export default async function decorate(blockEl) {
           return 'smooth';
         },
       });
-    } catch (err) { } // Edge throws an error
+    } catch (err) { 
+      // Edge throws an error
+    } 
     return supports;
   }
 
