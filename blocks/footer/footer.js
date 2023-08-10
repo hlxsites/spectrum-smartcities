@@ -1,12 +1,20 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
+import { createEl } from '../../scripts/scripts.js';
 
 /**
  * loads and decorates the footer
- * @param {Element} block The footer block element
+ * @param {Element} blockEl The footer block element
  */
-export default async function decorate(block) {
-  const cfg = readBlockConfig(block);
-  block.textContent = '';
+export default async function decorate(blockEl) {
+  const cfg = readBlockConfig(blockEl);
+
+  blockEl.innerHTML = '';
+
+  createEl('div', {
+    class: 'logo',
+  }, `
+    <img src="/assets/menu-logo.svg"/>
+  `, blockEl);
 
   // fetch footer content
   const footerPath = cfg.footer || '/footer';
@@ -16,10 +24,18 @@ export default async function decorate(block) {
     const html = await resp.text();
 
     // decorate footer DOM
-    const footer = document.createElement('div');
-    footer.innerHTML = html;
+    const footerMenuEl = document.createElement('div');
+    footerMenuEl.innerHTML = html;
 
-    decorateIcons(footer);
-    block.append(footer);
+    const socialsResp = await fetch('/socials.plain.html');
+    if (socialsResp.ok) {
+      const socialHtml = await socialsResp.text();
+      footerMenuEl.append(createEl('div', {
+        class: 'social-buttons',
+      }, socialHtml));
+    }
+
+    decorateIcons(footerMenuEl);
+    blockEl.append(footerMenuEl);
   }
 }
