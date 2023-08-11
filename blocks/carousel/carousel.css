@@ -94,11 +94,11 @@ img {
   /* old scroll snap points spec */
   .scroll {
     -webkit-scroll-snap-type: mandatory;
-            scroll-snap-type: mandatory;
+    scroll-snap-type: mandatory;
     -webkit-scroll-snap-destination: 0% center;
-            scroll-snap-destination: 0% center;
+    scroll-snap-destination: 0% center;
     -webkit-scroll-snap-points-x: repeat(100%);
-            scroll-snap-points-x: repeat(100%);
+    scroll-snap-points-x: repeat(100%);
   }
   
   .scroll-item-outer {
@@ -119,7 +119,9 @@ ul.indicators {
 }
 
 .indicator {
-  padding: 10px;
+  padding: 0;
+  margin: 0;
+  width: 25px;
 }
 
 .carousel :is(button:hover, button:focus) { 
@@ -136,16 +138,21 @@ ul.indicators {
   display: flex;
   flex-direction: column;
   padding: 0;
+  height: 50px;
 }
 
-.indicator-button:after {
+.indicator-button::after {
   content: '○';
   font-size: 1.4em;
   padding: 12px 15px 17px;
 }
 
 @media (min-width: 900px) {
-  .indicator-button:after {
+  .indicator {
+    width: 30px;
+  }
+
+  .indicator-button::after {
     content: '○';
     font-size: 40px;
     padding: 12px 15px 17px;
