@@ -37,6 +37,10 @@ export function createEl(name, attributes = {}, content = BLANK, parentEl = null
       content.forEach((itemEl) => {
         el.append(itemEl);
       });
+    } else if (content instanceof HTMLCollection) {
+      Array.from(content).forEach((itemEl) => {
+        el.append(itemEl);
+      });
     } else {
       el.append(content);
     }
@@ -132,9 +136,9 @@ function oldbuildCarouselBlock(mainEl) {
 function buildCarouselBlock(mainEl) {
   const columnEls = document.querySelectorAll('.columns > div > div');
   columnEls.forEach((columnEl) => {
-    let isCarousel = true;
     const columnChildren = columnEl.children;
     if (columnChildren.length > 1) {
+      let isCarousel = true;
       Array.from(columnChildren).every((childEl) => {
         isCarousel = (childEl.tagName === 'P'
           && childEl.children.length === 1
@@ -161,8 +165,8 @@ function buildRoundCardsBlock(mainEl) {
       const itemEls = listEl.querySelectorAll('li');
       const rows = [];
       itemEls.forEach((itemEl) => {
-        // rows.push(createEl('div', {}, itemEl.childNodes));
-        rows.push([itemEl]);
+        rows.push([createEl('div', {}, itemEl.children)]);
+        //rows.push([itemEl]);
       });
       const blockEl = buildBlock('round-cards', rows);
       blockEl.classList.add('block');

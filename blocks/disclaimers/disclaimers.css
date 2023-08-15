@@ -1,0 +1,23 @@
+.disclaimers {
+  font-size: var(--body-font-size-xxs);
+}
+
+.disclaimers a {
+  font-size: var(--body-font-size-xs);
+}
+
+@media (min-width: 900px) {
+  main .section.disclaimers-container {
+    margin: 0 auto;
+  }
+
+  .disclaimers {
+    max-width: 60%;
+    margin: 0 auto;
+    font-size: var(--body-font-size-xs);
+  }
+  
+  .disclaimers a {
+    font-size: var(--body-font-size-xs);
+  }
+}

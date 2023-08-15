@@ -51,6 +51,7 @@
   .columns > div > div {
     flex: 1;
     order: unset;
+    list-style-type: none;
   }
 
   .columns > div > div:first-child > *:not(:is(.carousel, p:has(:is(img)))) {

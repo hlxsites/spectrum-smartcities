@@ -30,6 +30,7 @@
   height: auto;
   padding: 5px;
   background: linear-gradient(90deg,#0f88f6 5.36%,#23bec8);
+  border-radius: 50%;
 }
 
 @media (min-width: 900px) {
