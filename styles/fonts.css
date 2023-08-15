@@ -1,4 +1,11 @@
 @font-face {
+  font-family: roboto-fallback;
+  size-adjust: 100.06%;
+  ascent-override: 95%;
+  src: local('Arial');
+}
+
+@font-face {
     font-family: roboto;
     font-style: normal;
     font-weight: 700;

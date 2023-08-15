@@ -168,6 +168,6 @@ ul.indicators {
   padding: 0;
 }
 
-.indicator-button[aria-pressed="true"]:after {
+.indicator-button[aria-pressed="true"]::after {
   content: '●';
 }

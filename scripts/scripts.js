@@ -5,6 +5,7 @@ import {
   loadFooter,
   decorateIcons,
   decorateSections,
+  decorateBlock,
   decorateBlocks,
   decorateTemplateAndTheme,
   waitForLCP,
@@ -102,17 +103,72 @@ async function loadTemplate(doc, theTemplateName) {
 
 /**
  * Builds hero block and prepends to main in a new section.
- * @param {Element} main The container element
+ * @param {Element} mainEl The container element
  */
-function buildHeroBlock(main) {
-  const h1 = main.querySelector(H1);
-  const picture = main.querySelector(PICTURE);
+function buildHeroBlock(mainEl) {
+  const h1 = mainEl.querySelector(H1);
+  const picture = mainEl.querySelector(PICTURE);
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement(DIV);
     section.append(buildBlock('hero', { elems: [picture, h1] }));
-    main.prepend(section);
+    mainEl.prepend(section);
   }
+}
+
+function oldbuildCarouselBlock(mainEl) {
+  const columnEls = document.querySelectorAll('.columns');
+  columnEls.forEach((columnEl) => {
+    const listEls = columnEl.querySelectorAll('ol');
+    listEls.forEach((listEl) => {
+      const pictureEls = listEl.querySelectorAll('picture');
+      const blockEl = buildBlock('carousel', { elems: pictureEls });
+      blockEl.classList.add('block');
+      listEl.outerHTML = blockEl.outerHTML;
+    });
+  });
+}
+
+function buildCarouselBlock(mainEl) {
+  const columnEls = document.querySelectorAll('.columns > div > div');
+  columnEls.forEach((columnEl) => {
+    let isCarousel = true;
+    const columnChildren = columnEl.children;
+    if (columnChildren.length > 1) {
+      Array.from(columnChildren).every((childEl) => {
+        isCarousel = (childEl.tagName === 'P'
+          && childEl.children.length === 1
+          && childEl.children[0].tagName === 'PICTURE');
+        return isCarousel;
+      });
+
+      if (isCarousel) {
+        const pictureEls = columnEl.querySelectorAll('picture');
+        const blockEl = buildBlock('carousel', { elems: pictureEls });
+        blockEl.classList.add('block');
+        columnEl.innerHTML = blockEl.outerHTML;
+      }
+    }
+  });
+}
+
+
+function buildRoundCardsBlock(mainEl) {
+  const columnEls = document.querySelectorAll('.columns');
+  columnEls.forEach((columnEl) => {
+    const listEls = columnEl.querySelectorAll('ul');
+    listEls.forEach((listEl) => {
+      const itemEls = listEl.querySelectorAll('li');
+      const rows = [];
+      itemEls.forEach((itemEl) => {
+        // rows.push(createEl('div', {}, itemEl.childNodes));
+        rows.push([itemEl]);
+      });
+      const blockEl = buildBlock('round-cards', rows);
+      blockEl.classList.add('block');
+      listEl.outerHTML = blockEl.outerHTML;
+    });
+  });
 }
 
 /**
@@ -163,16 +219,29 @@ function decorateButtons(element) {
 
 /**
  * Builds all synthetic blocks in a container element.
- * @param {Element} main The container element
+ * @param {Element} mainEl The container element
  */
-function buildAutoBlocks(main) {
+function buildAutoBlocks(mainEl) {
   try {
     // buildHeroBlock(main);
+    buildCarouselBlock(mainEl);
+    buildRoundCardsBlock(mainEl);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
 }
+
+/**
+ * Override
+ * Decorates all blocks in a container element and also column block.
+ * @param {Element} main The container element
+ */
+// export function decorateBlocks(main) {
+//   main
+//     .querySelectorAll('div.section > div > div, .columns .block')
+//     .forEach(decorateBlock);
+// }
 
 /**
  * Decorates the main element.

@@ -1,9 +1,9 @@
-export default function decorate(block) {
-  const cols = [...block.firstElementChild.children];
-  block.classList.add(`columns-${cols.length}-cols`);
+export default function decorate(blockEl) {
+  const cols = [...blockEl.firstElementChild.children];
+  blockEl.classList.add(`columns-${cols.length}-cols`);
 
   // setup image columns
-  [...block.children].forEach((row) => {
+  [...blockEl.children].forEach((row) => {
     [...row.children].forEach((col) => {
       const pic = col.querySelector('picture');
       if (pic) {
@@ -15,4 +15,8 @@ export default function decorate(block) {
       }
     });
   });
+
+  if (blockEl.classList.contains('network')) {
+    blockEl.closest('.section').classList.add('network-panel');
+  }
 }

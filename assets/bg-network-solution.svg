@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="774" height="863" viewBox="0 4 774 863" fill="none">
+  <path d="M62 510L181 629" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <path d="M306 510L2.99998 813" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <path d="M306.975 511.136L307.211 241.789" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <path d="M481 685L306 510" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <path d="M641 685L484 684.744" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <path d="M771 558L644 685" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <path d="M527 815L481 769" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <path d="M718 759L644 685" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <path d="M390 860L481 769" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <path d="M480.484 773.516L480.629 685" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="306.101" cy="514.213" r="15" transform="rotate(45 306.101 514.213)" fill="white"/>
+  <circle cx="183.899" cy="631.899" r="7" transform="rotate(45 183.899 631.899)" fill="white"/>
+  <circle cx="481" cy="687.678" r="12.5" transform="rotate(45 481 687.678)" fill="white"/>
+  <circle cx="643.899" cy="684.899" r="7" transform="rotate(45 643.899 684.899)" fill="white"/>
+  <circle cx="481" cy="773.142" r="10" transform="rotate(45 481 773.142)" fill="white"/>
+  <path d="M308 118.868L307.869 2.99976" stroke="white" stroke-width="5" stroke-miterlimit="16"/>
+</svg>

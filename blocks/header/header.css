@@ -13,7 +13,9 @@
   align-items: center;
   justify-content: space-between;
   height: var(--nav-height);
+  margin: 0 auto;
   padding: 12px 20px 10px;
+  max-width: 1920px;
 }
 
 .header #nav .logo {

@@ -29,7 +29,7 @@ export default async function decorate(doc) {
       revealBackground();
     });
 
-    const sectionEls = document.querySelectorAll('.section');
+    const sectionEls = document.querySelectorAll('.section, .columns > div');
     if (sectionEls && sectionEls.length > 1) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {

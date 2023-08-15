@@ -13,7 +13,7 @@ export default async function decorate(blockEl) {
   createEl('div', {
     class: 'logo',
   }, `
-    <img src="/assets/menu-logo.svg"/>
+    <img src="/assets/menu-logo.svg" alt="Spectrum Smart Cities Home"/>
   `, blockEl);
 
   // fetch footer content
@@ -33,6 +33,10 @@ export default async function decorate(blockEl) {
       footerMenuEl.append(createEl('div', {
         class: 'social-buttons',
       }, socialHtml));
+      const socialButtonEls = footerMenuEl.querySelectorAll('.social-buttons a');
+      socialButtonEls.forEach((buttonEl) => {
+        buttonEl.setAttribute('title', buttonEl.href);
+      });
     }
 
     decorateIcons(footerMenuEl);

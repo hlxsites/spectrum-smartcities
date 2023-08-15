@@ -1,8 +1,9 @@
 body {
   position: relative;
   background: url('/assets/homepage-network-line.svg');
-  background-repeat: repeat-x;
-  background-size: 100vw;
+  background-repeat: repeat-y;
+  background-position: center;
+  background-size: 100%;
   height: 100%;
 }
 

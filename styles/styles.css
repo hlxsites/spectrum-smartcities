@@ -46,17 +46,9 @@
 
 }
 
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 100.06%;
-  ascent-override: 95%;
-  src: local('Arial');
-}
-
-
 @media (min-width: 900px) {
   :root {
-    --heading-font-size-xxl: 5.7vw;
+    --heading-font-size-xxl: 6rem;
     --heading-font-size-xl: 40px;
     --heading-font-size-l: 36px;
     --heading-font-size-m: 30px;
@@ -68,17 +60,18 @@
 body {
   display: none;
   font-size: var(--body-font-size-m);
-  margin: 0;
+  margin: 0 auto;
   font-family: var(--body-font-family);
   line-height: 1.6;
   color: var(--text-color);
   background-color: var(--background-color);
   overflow-x: hidden;
-  max-width: 100vw;
+  max-width: 1920px;
+  width: 100%;
 }
 
 body.appear {
-  display: unset;
+  display: block;
 }
 
 header {
@@ -96,12 +89,15 @@ h4, h5, h6 {
   background-color: #fff;
 }
 
-h1 { 
+h1, h2 > strong { 
   font-size: var(--heading-font-size-xxl);
   font-weight: 300;
   line-height: .91;
 }
-h2 { font-size: var(--heading-font-size-xl) }
+
+h2, h3 > strong {
+  font-size: var(--heading-font-size-xl) 
+}
 h3 { font-size: var(--heading-font-size-l) }
 h4 { font-size: var(--heading-font-size-m) }
 h5 { font-size: var(--heading-font-size-s) }
@@ -174,6 +170,10 @@ a.button:any-link, button {
   overflow: hidden;
   text-overflow: ellipsis;
   border-radius: 30px;
+}
+
+a:not(.button) {
+  text-decoration: underline;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
@@ -273,6 +273,15 @@ main .section.as-columns div.default-content-wrapper:not(:has(img)) {
   order: 2;
 }
 
+main .section.with-bg {
+  color: var(--light-text-color);
+  background-size: cover;
+}
+
+main .section.with-bg * {
+  background: unset;
+}
+
 @media (min-width: 900px) {
   main .section {
     padding: 64px 0;
@@ -284,7 +293,7 @@ main .section.as-columns div.default-content-wrapper:not(:has(img)) {
   }
 
   main .section > div {
-    max-width: 1200px;
+    max-width: 1920px;
     margin: auto;
   }
 
@@ -323,8 +332,6 @@ main .section.dark {
 
 @media (min-width: 900px) {
   main .section.dark {
-    color: var(--light-text-color);
-    background-color: var(--dark-background-color);  
     margin-bottom: 30px;
   }
 }

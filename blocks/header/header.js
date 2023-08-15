@@ -31,7 +31,7 @@ export default async function decorate(block) {
       class: 'logo',
       href: '/',
     }, `
-      <img src="/assets/logo.svg"/>
+      <img src="/assets/logo.svg" alt="Spectrum Smart Cities Home"/>
     `);
     navEl.prepend(logoLinkEl);
 
@@ -54,6 +54,10 @@ export default async function decorate(block) {
       modalBodyEl.append(createEl(DIV, {
         class: 'social-buttons',
       }, socialHtml));
+      const socialButtonEls = modalBodyEl.querySelectorAll('.social-buttons a');
+      socialButtonEls.forEach((buttonEl) => {
+        buttonEl.setAttribute('title', buttonEl.href);
+      });
     }
 
     const hamburgerEl = createEl(A, {

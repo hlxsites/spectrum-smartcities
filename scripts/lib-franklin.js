@@ -109,7 +109,7 @@ export async function loadScript(src, attrs) {
       const script = document.createElement('script');
       script.src = src;
       if (attrs) {
-      // eslint-disable-next-line no-restricted-syntax, guard-for-in
+        // eslint-disable-next-line no-restricted-syntax, guard-for-in
         for (const attr in attrs) {
           script.setAttribute(attr, attrs[attr]);
         }
@@ -362,6 +362,12 @@ export function decorateSections(main) {
       });
       sectionMeta.parentNode.remove();
     }
+
+    const sectionBGIMG = section.dataset['backgroundImage'];
+    if (sectionBGIMG) {
+      section.style.backgroundImage = `url(${sectionBGIMG})`;
+      section.classList.add('with-bg');
+    }
   });
 }
 
@@ -388,12 +394,13 @@ export function updateSectionsStatus(main) {
 }
 
 /**
- * Decorates all blocks in a container element.
+ * Override
+ * Decorates all blocks in a container element and also column block.
  * @param {Element} main The container element
  */
 export function decorateBlocks(main) {
   main
-    .querySelectorAll('div.section > div > div')
+    .querySelectorAll('div.section > div > div, .columns .block')
     .forEach(decorateBlock);
 }
 
