@@ -98,10 +98,11 @@ h4, h5, h6 {
   margin-top: 1em;
   margin-bottom: .5em;
   scroll-margin: calc(var(--nav-height) + 1em);
+  color: var(--text-color);
   background-color: #fff;
 }
 
-h1, h2 > strong { 
+h1, h2 > strong {
   font-size: var(--heading-font-size-xxl);
   font-weight: 300;
   line-height: .91;

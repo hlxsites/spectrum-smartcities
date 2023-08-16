@@ -1,0 +1,63 @@
+.contact-form form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.contact-form form .form-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-bottom: 24px;
+  gap: 24px;
+}
+
+.contact-form form .form-row > .field {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form form .form-row > .field > * {
+  font-family: "Gotham Book A", "Gotham Book B", arial, sans-serif; 
+  font-size: 15px;
+}
+
+.contact-form form .form-row > .field > :is(input, textarea, button) {
+  flex-grow: 1;
+  border: 1px solid #253c70;
+  color: #253c70;
+  border-radius: 0;
+  padding: 10px;
+  margin: 0;
+}
+
+.contact-form form .form-row > .field > :is(input, textarea)::placeholder { 
+  color: lightgray;
+  opacity: 1;
+}
+
+.contact-form form .form-row > .field > button {
+  color: #fff;
+  background: #253c70;
+  text-transform: uppercase;
+}
+
+.contact-form form .form-row > .field > .error-message {
+  color: red;
+  margin-top: 5px;
+}
+
+.contact-form form .form-row > .field > .error {
+  border: 1px solid red;
+}
+
+@media (min-width: 900px) {
+  .contact-form form .form-row {
+    flex-direction: row;
+  }
+
+  .contact-form form .form-row * {
+    flex-grow: 1;
+  }
+}
+
