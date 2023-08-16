@@ -52,6 +52,13 @@
 }
 
 @media (min-width: 900px) {
+  .section .contact-form-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 271px;
+    margin-right: 271px;
+  }
+
   .contact-form form .form-row {
     flex-direction: row;
   }
