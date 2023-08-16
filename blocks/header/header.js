@@ -1,20 +1,15 @@
 import {
   getMetadata,
   decorateIcons,
-  Consts,
 } from '../../scripts/lib-franklin.js';
 import {
   isDesktop,
   createEl,
 } from '../../scripts/scripts.js';
 
-const {
-  A, DIV, CLICK, NAV, NONE, SHOW,
-} = Consts;
-
 export default async function decorate(block) {
   // fetch nav content
-  const navMeta = getMetadata(NAV);
+  const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta).pathname : '/nav';
   const navResp = await fetch(`${navPath}.plain.html`);
 
@@ -22,12 +17,12 @@ export default async function decorate(block) {
     const html = await navResp.text();
 
     // decorate nav DOM
-    const navEl = document.createElement(NAV);
-    navEl.id = NAV;
+    const navEl = document.createElement('nav');
+    navEl.id = 'nav';
 
     block.append(navEl);
 
-    const logoLinkEl = createEl(A, {
+    const logoLinkEl = createEl('a', {
       class: 'logo',
       href: '/',
     }, `
@@ -35,7 +30,7 @@ export default async function decorate(block) {
     `);
     navEl.prepend(logoLinkEl);
 
-    const modalEl = createEl(DIV, {
+    const modalEl = createEl('div', {
       class: 'menu-modal',
     }, `
       <div class="modal-header">
@@ -44,14 +39,14 @@ export default async function decorate(block) {
       </div>
     `, document.body);
 
-    const modalBodyEl = createEl(DIV, {
+    const modalBodyEl = createEl('div', {
       class: 'modal-body',
     }, html, modalEl);
 
     const socialsResp = await fetch('/socials.plain.html');
     if (socialsResp.ok) {
       const socialHtml = await socialsResp.text();
-      modalBodyEl.append(createEl(DIV, {
+      modalBodyEl.append(createEl('div', {
         class: 'social-buttons',
       }, socialHtml));
       const socialButtonEls = modalBodyEl.querySelectorAll('.social-buttons a');
@@ -60,20 +55,20 @@ export default async function decorate(block) {
       });
     }
 
-    const hamburgerEl = createEl(A, {
+    const hamburgerEl = createEl('a', {
       class: 'modal-open',
       href: '#',
     }, '☰', navEl);
 
-    hamburgerEl.addEventListener(CLICK, () => {
+    hamburgerEl.addEventListener('click', () => {
       modalEl.style.display = 'flex';
-      setTimeout(() => modalEl.classList.add(SHOW), 1);
+      setTimeout(() => modalEl.classList.add('show'), 1);
       const modalCloseEl = modalEl.querySelector('.modal-close');
-      modalCloseEl.addEventListener(CLICK, () => {
+      modalCloseEl.addEventListener('click', () => {
         modalEl.addEventListener('transitionend', () => {
-          modalEl.style.display = NONE;
+          modalEl.style.display = 'none';
         }, { once: true });
-        modalEl.classList.remove(SHOW);
+        modalEl.classList.remove('show');
       }, { once: true });
     });
 

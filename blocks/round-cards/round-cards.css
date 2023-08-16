@@ -1,31 +1,40 @@
-.round-cards {
-  display: flex;
-  flex-direction: column;
+main .round-cards-wrapper {
+  container: wrapper / inline-size
 }
 
-.round-cards div {
+main .round-cards {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  row-gap: 20px;
+}
+
+main .round-cards div {
   display: flex;
   flex-direction: row;
   align-items: center;
   max-width: 100vw;
   font-size: 1em;
+  gap: 20px;
 }
 
-.round-cards > div > div {
+main .round-cards > div > div {
   display: flex;
   gap: 30px;
 }
 
-.round-cards > div > div > p {
+main .round-cards > div > div > p {
   margin: 0;
 }
 
-.round-cards > div a {
+main .round-cards > div a {
+  color: var(--text-color);
   text-decoration: underline;
   text-align: center;
+  border-width: 0;
 }
 
-.round-cards > div img {
+main .round-cards > div img {
   width: 60px;
   height: auto;
   padding: 5px;
@@ -34,44 +43,47 @@
 }
 
 @media (min-width: 900px) {
-  .round-cards {
+  main .round-cards {
     flex-flow: row wrap;
     justify-content: flex-start;
     gap: 30px;
-    container-type: inline-size;
     width: 100%;
     max-width: 1240px;
-    margin: 0 auto;
+    margin: 50px auto;
   }
 
-  .round-cards a {
+  main .round-cards a {
+    font-size: 22px;
     color: var(--light-text-color);
   }
 
-  .round-cards > div {
+  main .round-cards div {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  main .round-cards > div {
     justify-content: center;
     background: var(--dark-background-color);
     color: var(--light-text-color);
     border-radius: 50%;
-    /* width: 22vw;
-    max-width: 22%; */
-    min-width: 22cqw;
-    min-height: 22cqw;
+    width: 250px;
+    height: 250px;
   }
 
-  .round-cards > div > div {
+  main .round-cards > div > div {
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0;
-    max-width: 22cqw;
+    max-width: 200px;
   }
 
-  .round-cards > div:hover {
+  main .round-cards > div:hover {
     background: linear-gradient(90deg,#0f88f6 5.36%,#23bec8);
   }
 
-  .round-cards > div > div :is(p, li) {
+  main .round-cards > div > div :is(p, li) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,14 +92,19 @@
     text-align: center;
   }
 
-  .round-cards > div img {
+  main .round-cards > div img {
     background: none;
+    width: 120px;
+    padding: 0;
   }
 
-  @container (max-width: 50cqw) {
-    .round-cards > div {
-      width: 35cqw;
-      height: 35cqw;
+  main .round-cards > div a {
+    color: #fff;
+  }
+
+  @container wrapper (max-width: 50cqw) {
+    main .round-cards {
+      max-width: 30vw;
     }
   }
 }

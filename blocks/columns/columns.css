@@ -9,17 +9,39 @@
 .columns > div {
   display: flex;
   flex-direction: column;
+  margin: 50px 0;
 }
 
 .columns img {
   width: 100%;
 }
 
+.columns p {
+  margin-bottom: 0;
+  background-color: #fff;
+}
+
+.columns blockquote {
+  margin: 10px 0;
+  text-align: right;
+  background-color: #fff;
+}
+
+.columns blockquote p {
+  font-size: 20px;
+  line-height: 22px;
+}
+
+.columns blockquote strong {
+  color: #73dce1; 
+  font-weight: 300;
+}
+
 .columns > div > div {
   order: 1;
 }
 
-.columns > div > .columns-img-col {
+.columns > div > :is(.columns-img-col, .carousel-wrapper) {
   order: 0;
 }
 
@@ -28,7 +50,11 @@
 }
 
 .network-panel .columns.network {
-  
+
+}
+
+.network-panel .columns.network a {
+  border-color: #fff;
 }
 
 .network-panel .columns.network * {
@@ -41,17 +67,29 @@
     margin-top: 0;
   }
 
+  .columns blockquote {
+    font-size: var(--body-font-size-m);
+  }
+  
+  .columns blockquote strong {
+    font-size: 60px;
+  }
+
   .columns > div {
     align-items: flex-start;
     flex-direction: unset;
     gap: 50px;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
   }
 
   .columns > div > div {
     flex: 1;
     order: unset;
     list-style-type: none;
+  }
+
+  .columns > div:last-child {
+    margin-bottom: 0;
   }
 
   .columns > div > div:first-child > *:not(:is(.carousel, p:has(:is(img)))) {
@@ -67,7 +105,7 @@
   }
 
   .network-panel .columns.network {
-    width: 100%;
+    width: 100%; 
   }
 
   .network-panel .columns.network > div > div {
@@ -89,7 +127,7 @@
     background-image: url('/assets/bg-network-solution.svg');
     background-repeat: no-repeat;
     width: 40cqw;
-    height: 100cqh;
+    min-height: 800px;
     padding-left: 10cqw;
     font-size: 30px;
   }

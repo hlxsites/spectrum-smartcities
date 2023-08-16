@@ -76,6 +76,7 @@
 
 .menu-modal .modal-header .modal-close {
   color: #fff;
+  text-decoration: none;
 }
 
 .menu-modal .modal-logo {
@@ -100,7 +101,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   column-gap: 55px;
   width: 75%;
   margin: 0 auto;
@@ -156,9 +157,5 @@
 
   .menu-modal ul li > a {
     font-size: 53px;
-  }
-
-  .menu-modal .modal-body > .social-buttons p {
-    justify-content: center;
   }
 }

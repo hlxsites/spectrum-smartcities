@@ -1,5 +1,15 @@
+main .section.disclaimers-container {
+  padding: 16px;
+  margin: 0;
+}
+
 .disclaimers {
-  font-size: var(--body-font-size-xxs);
+  background-color: #fff;
+}
+
+.section .disclaimers p {
+  font-size: 10px;
+  margin: 15px auto;
 }
 
 .disclaimers a {
@@ -7,13 +17,9 @@
 }
 
 @media (min-width: 900px) {
-  main .section.disclaimers-container {
-    margin: 0 auto;
-  }
-
-  .disclaimers {
+  .section .disclaimers p {
     max-width: 60%;
-    margin: 0 auto;
+    margin: 20px auto;
     font-size: var(--body-font-size-xs);
   }
   

@@ -682,25 +682,3 @@ function init() {
 }
 
 init();
-
-export const Consts = {
-  A: 'a',
-  DIV: 'div',
-  SPAN: 'span',
-  H1: 'h1',
-  H2: 'h2',
-  PICTURE: 'picture',
-  IMG: 'img',
-  BUTTON: 'button',
-
-  CLICK: 'click',
-  SCROLL: 'scroll',
-
-  NAV: 'nav',
-  MAIN: 'main',
-
-  NONE: 'none',
-  SHOW: 'show',
-
-  BLANK: '',
-};

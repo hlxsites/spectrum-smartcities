@@ -3,8 +3,29 @@ import {
   isDesktop,
 } from '../../scripts/scripts.js';
 
+function buildHeroBlock(mainEl) {
+  const h1El = mainEl.querySelector('h1');
+  const pictureEl = mainEl.querySelector('picture');
+  // eslint-disable-next-line no-bitwise
+  if (h1El && pictureEl
+    && (h1El.compareDocumentPosition(pictureEl) & Node.DOCUMENT_POSITION_PRECEDING)) {
+    pictureEl.closest('p').classList.add('hero');
+  }
+}
+
+function decorateFAQ(mainEl) {
+  const faqEl = mainEl.querySelector('#faq');
+  if (faqEl) {
+    const sectionEl = faqEl.closest('.section');
+    sectionEl.classList.add('faq');
+  }
+}
+
 export default async function decorate(doc) {
   const mainEl = document.querySelector('main');
+
+  buildHeroBlock(mainEl);
+  decorateFAQ(mainEl);
 
   const coverEl = createEl('div', {
     class: 'background-cover',

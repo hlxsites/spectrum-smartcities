@@ -1,12 +1,14 @@
 :root {
-  --carousel-width: 40vw;
+  --carousel-width: 100vw;
   --carousel-height: calc(0.55 * var(--carousel-width));
   --carousel-padding: 5px;
 }
 
-@media (max-width: 479px) {
+@media (min-width: 900px) {
   :root {
-    --carousel-width: 95vw;
+    --carousel-width: 40vw;
+    --carousel-height: calc(0.55 * var(--carousel-width));
+    --carousel-padding: 5px;
   }
 }
 

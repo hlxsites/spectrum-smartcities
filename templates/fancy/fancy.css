@@ -27,6 +27,11 @@ body {
     transition-timing-function: linear;
   }
 
+  .section .default-content-wrapper > p.hero {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .section:only-child {
     opacity: 1;
   }
@@ -34,5 +39,16 @@ body {
   .in-view {
     transform: none;
     opacity: 1;
+  }
+
+  .hero {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .hero img {
+    position: relative;
+    width: 60vw;
+    height: auto;
   }
 }

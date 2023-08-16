@@ -1,15 +1,16 @@
 .cards > ul {
+  display: flex;
+  flex-direction: column;
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 16px;
 }
 
 .cards > ul > li {
-  border: 1px solid var(--highlight-background-color);
-  background-color: var(--background-color)
+  background-color: var(--background-color);
+  width: 100%;
 }
 
 .cards .cards-card-body {
@@ -26,6 +27,27 @@
 
 .cards > ul > li img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+}
+
+.cards.icons .cards-card-image img {
+  object-fit: none;
+}
+
+@media (min-width: 900px) {
+  .cards {
+    display: flex;
+    align-items: center;
+  }
+
+  .cards > ul {
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 100px;
+  }
+
+  .cards > ul > li {
+    width: 25%;
+  } 
 }

@@ -12,19 +12,14 @@ import {
   loadBlocks,
   loadCSS,
   getMetadata,
-  Consts,
 } from './lib-franklin.js';
-
-const {
-  A, DIV, H1, PICTURE, MAIN, IMG, CLICK, SCROLL, NAV, NONE, SHOW, BLANK,
-} = Consts;
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
 export const isMobile = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 export const isDesktop = window.matchMedia('(min-width: 900px)').matches;
 
-export function createEl(name, attributes = {}, content = BLANK, parentEl = null) {
+export function createEl(name, attributes = {}, content = '', parentEl = null) {
   const el = document.createElement(name);
 
   Object.keys(attributes).forEach((key) => {
@@ -74,7 +69,7 @@ export function template(strings, ...keys) {
       const value = Number.isInteger(key) ? values[key] : dict[key];
       result.push(value, strings[i + 1]);
     });
-    return result.join(BLANK);
+    return result.join('');
   };
 }
 
@@ -110,27 +105,14 @@ async function loadTemplate(doc, theTemplateName) {
  * @param {Element} mainEl The container element
  */
 function buildHeroBlock(mainEl) {
-  const h1 = mainEl.querySelector(H1);
-  const picture = mainEl.querySelector(PICTURE);
+  const h1 = mainEl.querySelector('h1');
+  const picture = mainEl.querySelector('picture');
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement(DIV);
+    const section = document.createElement('div');
     section.append(buildBlock('hero', { elems: [picture, h1] }));
     mainEl.prepend(section);
   }
-}
-
-function oldbuildCarouselBlock(mainEl) {
-  const columnEls = document.querySelectorAll('.columns');
-  columnEls.forEach((columnEl) => {
-    const listEls = columnEl.querySelectorAll('ol');
-    listEls.forEach((listEl) => {
-      const pictureEls = listEl.querySelectorAll('picture');
-      const blockEl = buildBlock('carousel', { elems: pictureEls });
-      blockEl.classList.add('block');
-      listEl.outerHTML = blockEl.outerHTML;
-    });
-  });
 }
 
 function buildCarouselBlock(mainEl) {
@@ -156,21 +138,25 @@ function buildCarouselBlock(mainEl) {
   });
 }
 
-
 function buildRoundCardsBlock(mainEl) {
   const columnEls = document.querySelectorAll('.columns');
   columnEls.forEach((columnEl) => {
     const listEls = columnEl.querySelectorAll('ul');
     listEls.forEach((listEl) => {
-      const itemEls = listEl.querySelectorAll('li');
-      const rows = [];
-      itemEls.forEach((itemEl) => {
-        rows.push([createEl('div', {}, itemEl.children)]);
-        //rows.push([itemEl]);
-      });
-      const blockEl = buildBlock('round-cards', rows);
-      blockEl.classList.add('block');
-      listEl.outerHTML = blockEl.outerHTML;
+      if (listEl.querySelector('picture')) { // This list needs to have a picture
+        const itemEls = listEl.querySelectorAll('li');
+        const rows = [];
+        itemEls.forEach((itemEl) => {
+          const brEl = itemEl.querySelector('br');
+          if (brEl) {
+            brEl.remove();
+          }
+          rows.push([createEl('div', {}, itemEl.children)]);
+        });
+        const blockEl = buildBlock('round-cards', rows);
+        blockEl.classList.add('block');
+        listEl.outerHTML = blockEl.outerHTML;
+      }
     });
   });
 }
@@ -296,7 +282,7 @@ async function loadLazy(doc) {
     loadTemplate(doc, templateName);
   }
 
-  const main = doc.querySelector(MAIN);
+  const main = doc.querySelector('main');
   await loadBlocks(main);
 
   const { hash } = window.location;

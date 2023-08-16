@@ -28,14 +28,15 @@
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
+  --body-font-size-l: 30px;
   --body-font-size-m: 22px;
   --body-font-size-s: 18px;
   --body-font-size-xs: 16px;
   --body-font-size-xxs: 14px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 2.8rem;
-  --heading-font-size-xl: 30px;
+  --heading-font-size-xxl: 40rem;
+  --heading-font-size-xl: 33px;
   --heading-font-size-l: 32px;
   --heading-font-size-m: 24px;
   --heading-font-size-s: 20px;
@@ -50,15 +51,16 @@
 @media (min-width: 900px) {
   :root {
     /* body sizes */
+    --body-font-size-l: 30px;
     --body-font-size-m: 22px;
     --body-font-size-s: 18px;
     --body-font-size-xs: 16px;
     --body-font-size-xxs: 14px;
 
     /* heading sizes */
-    --heading-font-size-xxl: 6rem;
-    --heading-font-size-xl: 40px;
-    --heading-font-size-l: 36px;
+    --heading-font-size-xxl: 96px;
+    --heading-font-size-xl: 75px;
+    --heading-font-size-l: 57px;
     --heading-font-size-m: 30px;
     --heading-font-size-s: 24px;
     --heading-font-size-xs: 22px;
@@ -71,12 +73,13 @@ body {
   font-size: var(--body-font-size-m);
   margin: 0 auto;
   font-family: var(--body-font-family);
-  line-height: 1.6;
+  line-height: 1.1;
   color: var(--text-color);
   background-color: var(--background-color);
   overflow-x: hidden;
   max-width: 1920px;
   width: 100%;
+  font-weight: 300;
 }
 
 body.appear {
@@ -90,7 +93,7 @@ header {
 h1, h2, h3,
 h4, h5, h6 {
   font-family: var(--heading-font-family);
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.25;
   margin-top: 1em;
   margin-bottom: .5em;
@@ -105,9 +108,13 @@ h1, h2 > strong {
 }
 
 h2, h3 > strong {
-  font-size: var(--heading-font-size-xl) 
+  font-size: var(--heading-font-size-xl);
+  color: #0f88f6;
 }
-h3 { font-size: var(--heading-font-size-l) }
+
+h3, h4 > strong { 
+  font-size: var(--heading-font-size-l);
+}
 h4 { font-size: var(--heading-font-size-m) }
 h5 { font-size: var(--heading-font-size-s) }
 h6 { font-size: var(--heading-font-size-xs) }
@@ -156,7 +163,7 @@ a:any-link {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
   color: var(--link-hover-color);
 }
 
@@ -181,8 +188,9 @@ a.button:any-link, button {
   border-radius: 30px;
 }
 
-a:not(.button) {
-  text-decoration: underline;
+main a:not(.button) {
+  color: var(--text-color);
+  border-bottom: 1.5px solid #253c70;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
@@ -232,20 +240,22 @@ main blockquote {
   hanging-punctuation: first;
 }
 
-main blockquote p::before {
-  content: '“';
-  line-height: 0;
-}
-
-main blockquote p::after {
-  content: '”';
-  line-height: 0;
-}
-
 main img {
   max-width: 100%;
   width: auto;
   height: auto;
+}
+
+main p {
+  font-size: var(--body-font-size-s);
+  font-weight: 300;
+  font-style: normal;
+}
+
+@media (min-width: 900px) {
+  main p {
+    font-size: var(--body-font-size-l);
+  } 
 }
 
 .icon {
@@ -257,6 +267,23 @@ main img {
 .icon svg {
   height: 100%;
   width: 100%;
+}
+
+main .section p:has(.icon) {
+  background-color: rgb(255 255 255 / 0%);
+}
+
+.icon.icon-arrowdown {
+  left: 0;
+  width: 60px;
+  height: 43px;
+}
+
+@media (min-width: 900px) {
+  .icon.icon-arrowdown {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 main .section {
@@ -294,11 +321,13 @@ main .section.with-bg * {
 @media (min-width: 900px) {
   main .section {
     padding: 64px 0;
-    margin-bottom: 230px;
+    margin-bottom: 50px;
   }
 
   main .section .default-content-wrapper > * {
     background-color: #fff;
+    margin-left: 271px;
+    margin-right: 271px;
   }
 
   main .section > div {
@@ -339,10 +368,8 @@ main .section.dark {
   margin-bottom: 10px;
 }
 
-@media (min-width: 900px) {
-  main .section.dark {
-    margin-bottom: 30px;
-  }
+main .section.dark p:has(a) {
+  text-align: right;
 }
 
 main .section.dark > div {
@@ -354,4 +381,36 @@ main .section.dark > div {
 main .section.dark * {
   color: var(--light-text-color);
   background-color: var(--dark-background-color);
+}
+
+main .section.dark a {
+  border-color: #fff;
+}
+
+@media (min-width: 900px) {
+  main .section.dark {
+    margin-bottom: 30px;
+  }
+
+  main .section.dark > div {
+    padding: 1vw 4.5vw 1vw 3vw;
+  }
+}
+
+main .faq h3 {
+  font-size: 20px;
+}
+
+main .faq p {
+  font-size: 14px;
+}
+
+@media (min-width: 900px) {
+  main .faq h3 {
+    font-size: 48px;
+  }
+  
+  main .faq p {
+    font-size: 20px;
+  }
 }
