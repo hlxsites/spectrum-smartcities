@@ -116,9 +116,34 @@ export default {
     });
 
     /** Fix Headers */
-    const fakeHeaderEls = document.querySelectorAll('.h1');
-    fakeHeaderEls.forEach((fakeHeaderEl) => {
-      fakeHeaderEl.innerHTML = createEl('h1', {}, fakeHeaderEl.textContent).outerHTML;
+    const firstFakeHeaderEl = main.querySelector('.h1:first-child');
+    firstFakeHeaderEl.outerHTML = createEl('h1', {}, `${firstFakeHeaderEl.textContent}`).outerHTML;
+
+    const lastFakeHeaderEl = main.querySelector('.h1:last-child');
+    if (lastFakeHeaderEl) {
+      const lfhpEl = lastFakeHeaderEl.closest('.default-bg');
+      lfhpEl.innerHTML = WebImporter.DOMUtils.createTable([
+        ['Columns'],
+        ['', lfhpEl.outerHTML],
+      ], document).outerHTML;
+    }
+
+    const fakeHeader1Els = document.querySelectorAll('h2.h1');
+    fakeHeader1Els.forEach((fakeHeaderEl) => {
+      fakeHeaderEl.innerHTML = createEl('h2', {}, `<strong>${fakeHeaderEl.textContent}</strong>`).outerHTML;
+    });
+
+    const fakeHeader4Els = document.querySelectorAll('.h4');
+    fakeHeader4Els.forEach((fakeHeaderEl) => {
+      fakeHeaderEl.innerHTML = createEl('h3', {}, fakeHeaderEl.textContent).outerHTML;
+    });
+
+    const shortH1Els = document.querySelectorAll('h1, .h1');
+    shortH1Els.forEach((shortH1El) => {
+      const text = shortH1El.textContent.trim();
+      if (text.split(' ').length === 2) {
+        shortH1El.innerHTML = `<strong>${text.replace(' ', '<br/>')}</strong>`;
+      }
     });
 
     /**

@@ -107,6 +107,7 @@ h1, h2 > strong {
   font-weight: 300;
   line-height: .91;
   text-transform: uppercase;
+  color: var(--text-color);
 }
 
 h2, h3 > strong {
@@ -170,12 +171,6 @@ a:hover {
   color: var(--link-hover-color);
 }
 
-a.file-download > span {
-  display: inline-block;
-  transform: rotate(90deg);
-  color: #007bff;
-}
-
 /* buttons */
 a.button:any-link, button {
   font-family: var(--body-font-family);
@@ -216,6 +211,17 @@ a.button.secondary, button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
   color: var(--text-color)
+}
+
+main a.file-download {
+  border-bottom: 0;
+}
+
+main a.file-download > span {
+  display: inline-block;
+  transform: rotate(90deg);
+  color: #007bff;
+  margin-left: 20px;
 }
 
 @media (min-width: 900px) {
