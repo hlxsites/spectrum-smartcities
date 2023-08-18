@@ -73,6 +73,7 @@
   
   .columns blockquote strong {
     font-size: 60px;
+    font-family: "Gotham Light A", "Gotham Light B", arial, sans-serif;
   }
 
   .columns > div {

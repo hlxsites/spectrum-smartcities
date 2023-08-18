@@ -267,7 +267,7 @@ main p {
   font-style: normal;
 }
 
-main strong {
+main :is(li, p, a) strong {
   font-family: "Gotham Bold A", "Gotham Bold B", arial, sans-serif;
 }
 
