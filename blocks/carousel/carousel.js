@@ -95,9 +95,9 @@ export default async function decorate(blockEl) {
           return 'smooth';
         },
       });
-    } catch (err) { 
+    } catch (err) {
       // Edge throws an error
-    } 
+    }
     return supports;
   }
 
@@ -154,5 +154,18 @@ export default async function decorate(blockEl) {
     setAriaPressed(index);
   }, 200));
 
+  function advanceSlide(i) {
+    setAriaPressed(i);
+    const scrollLeft = Math.floor(scroller.scrollWidth * (i / 4));
+    smoothScroll(scroller, scrollLeft, true);
+    setTimeout(() => {
+      advanceSlide((i >= indicators.length) ? 0 : (i += 1));
+    }, 3000);
+  }
+
   setAriaLabels();
+
+  setTimeout(() => {
+    advanceSlide(1);
+  }, 3000);
 }
