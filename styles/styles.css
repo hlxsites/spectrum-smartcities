@@ -267,6 +267,10 @@ main p {
   font-style: normal;
 }
 
+main strong {
+  font-family: "Gotham Bold A", "Gotham Bold B", arial, sans-serif;
+}
+
 @media (min-width: 900px) {
   main p {
     font-size: var(--body-font-size-l);

@@ -119,16 +119,7 @@ export default {
     const firstFakeHeaderEl = main.querySelector('.h1:first-child');
     firstFakeHeaderEl.outerHTML = createEl('h1', {}, `${firstFakeHeaderEl.textContent}`).outerHTML;
 
-    const lastFakeHeaderEl = main.querySelector('.h1:last-child');
-    if (lastFakeHeaderEl) {
-      const lfhpEl = lastFakeHeaderEl.closest('.default-bg');
-      lfhpEl.innerHTML = WebImporter.DOMUtils.createTable([
-        ['Columns'],
-        ['', lfhpEl.outerHTML],
-      ], document).outerHTML;
-    }
-
-    const fakeHeader1Els = document.querySelectorAll('h2.h1');
+    const fakeHeader1Els = document.querySelectorAll('.h1');
     fakeHeader1Els.forEach((fakeHeaderEl) => {
       fakeHeaderEl.innerHTML = createEl('h2', {}, `<strong>${fakeHeaderEl.textContent}</strong>`).outerHTML;
     });
@@ -145,6 +136,15 @@ export default {
         shortH1El.innerHTML = `<strong>${text.replace(' ', '<br/>')}</strong>`;
       }
     });
+
+    const lastFakeHeaderEl = main.querySelector('.h1:last-child');
+    if (lastFakeHeaderEl) {
+      const lfhpEl = lastFakeHeaderEl.closest('.default-bg');
+      lfhpEl.innerHTML = WebImporter.DOMUtils.createTable([
+        ['Columns'],
+        ['', lfhpEl.outerHTML],
+      ], document).outerHTML;
+    }
 
     /**
      * Build Blocks
@@ -200,6 +200,7 @@ export default {
         }
       });
       resourceListEl.innerHTML = WebImporter.DOMUtils.createTable(cells, document).outerHTML;
+      resourceListEl.prepend(document.createElement('hr'));
     });
 
     /** Resources Section */
@@ -231,6 +232,7 @@ export default {
         }
       });
       resourceListEl.innerHTML = WebImporter.DOMUtils.createTable(cells, document).outerHTML;
+      resourceListEl.prepend(document.createElement('hr'));
     });
 
     /** Filtered Results Section */
@@ -260,6 +262,7 @@ export default {
         cells.push(row);
       });
       resourceListEl.innerHTML = WebImporter.DOMUtils.createTable(cells, document).outerHTML;
+      resourceListEl.prepend(document.createElement('hr'));
     });
 
     // create the metadata block and append it to the main element

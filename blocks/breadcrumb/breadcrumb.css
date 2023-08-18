@@ -1,0 +1,37 @@
+.breadcrumb {
+  margin-top: 10px;
+}
+
+.breadcrumb > div > div {
+  display: block;
+  font-size: var(--body-font-size-xs);
+  font-family: "Gotham Bold A", "Gotham Bold B", arial, sans-serif;
+}
+
+.breadcrumb > div > div > * {
+  display: inline;
+}
+
+.breadcrumb > div > div > a {
+  text-decoration: none;
+  border-bottom: 0;
+  font-family: "Gotham Light A", "Gotham Light B", arial, sans-serif;
+}
+
+.breadcrumb > div > div > a::after {
+  content: " > ";
+}
+
+.breadcrumb > div > div :not(a) {
+
+}
+
+@media (min-width: 900px) {
+  .section .breadcrumb-wrapper {
+    margin-left: 271px;
+  }
+
+  .breadcrumb > div > div {
+    font-size: var(--body-font-size-m);
+  }
+}
