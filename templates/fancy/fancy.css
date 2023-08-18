@@ -30,6 +30,7 @@ body {
   .section .default-content-wrapper > p.hero {
     margin-left: 0;
     margin-right: 0;
+    background-color: rgb(255 255 255 / 0%);
   }
 
   .section:only-child {

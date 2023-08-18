@@ -4,12 +4,13 @@ import {
 } from '../../scripts/scripts.js';
 
 function buildHeroBlock(mainEl) {
-  const h1El = mainEl.querySelector('h1');
-  const pictureEl = mainEl.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1El && pictureEl
-    && (h1El.compareDocumentPosition(pictureEl) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    pictureEl.closest('p').classList.add('hero');
+  const pictureEl = mainEl.querySelector(':scope > .section:first-child > div:first-child picture');
+  if (pictureEl) {
+    const h1El = pictureEl.parentElement.nextSibling;
+    // eslint-disable-next-line no-bitwise
+    if (h1El && h1El.tagName === 'H1' && (h1El.compareDocumentPosition(pictureEl) & Node.DOCUMENT_POSITION_PRECEDING)) {
+      pictureEl.closest('p').classList.add('hero');
+    }
   }
 }
 

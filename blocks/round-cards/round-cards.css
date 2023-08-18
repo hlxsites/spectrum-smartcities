@@ -56,7 +56,7 @@ main .round-cards > div img {
     font-size: 22px;
     color: var(--light-text-color);
   }
-
+  
   main .round-cards div {
     flex-direction: column;
     gap: 0;

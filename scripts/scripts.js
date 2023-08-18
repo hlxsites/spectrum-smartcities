@@ -105,13 +105,15 @@ async function loadTemplate(doc, theTemplateName) {
  * @param {Element} mainEl The container element
  */
 function buildHeroBlock(mainEl) {
-  const h1 = mainEl.querySelector('h1');
-  const picture = mainEl.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
-    mainEl.prepend(section);
+  const picture = mainEl.querySelector(':scope > div:first-child picture');
+  if (picture) {
+    const h1 = mainEl.querySelector('h1');
+    // eslint-disable-next-line no-bitwise
+    if (h1 && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
+      const section = document.createElement('div');
+      section.append(buildBlock('hero', { elems: [picture, h1] }));
+      mainEl.prepend(section);
+    }
   }
 }
 
@@ -207,6 +209,16 @@ function decorateButtons(element) {
   });
 }
 
+function decorateFileDownloadLinks(mainEl) {
+  const linkEls = mainEl.querySelectorAll('a');
+  linkEls.forEach((linkEl) => {
+    if (linkEl.href.endsWith('.pdf')) {
+      linkEl.classList.add('file-download');
+      linkEl.setAttribute('target', '_self');
+    }
+  });
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} mainEl The container element
@@ -235,16 +247,17 @@ function buildAutoBlocks(mainEl) {
 
 /**
  * Decorates the main element.
- * @param {Element} main The main element
+ * @param {Element} mainEl The main element
  */
 // eslint-disable-next-line import/prefer-default-export
-export function decorateMain(main) {
+export function decorateMain(mainEl) {
   // hopefully forward compatible button decoration
-  decorateButtons(main);
-  decorateIcons(main);
-  buildAutoBlocks(main);
-  decorateSections(main);
-  decorateBlocks(main);
+  decorateButtons(mainEl);
+  decorateFileDownloadLinks(mainEl);
+  decorateIcons(mainEl);
+  buildAutoBlocks(mainEl);
+  decorateSections(mainEl);
+  decorateBlocks(mainEl);
   bindEvents();
 }
 

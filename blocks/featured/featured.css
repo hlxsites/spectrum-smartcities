@@ -1,0 +1,51 @@
+.featured {
+  width: 100%;
+}
+
+.featured > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+}
+
+.featured > div * {
+  background: none;
+  color: #fff;
+}
+
+.featured > div > div:first-child {
+  background-size: cover;
+  height: 188px;
+}
+
+.featured > div > div:nth-child(2) {
+  padding: 16px;
+  background: linear-gradient(90deg,#0f88f6 5.36%,#23bec8);
+}
+
+.featured > div > div:nth-child(2) h6 {
+  display: inline-block;
+  padding: 5px;
+  background-color: #213563;
+}
+
+@media (min-width: 900px) {
+  .featured {
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .featured > div {
+    flex-direction: row;
+  }
+
+  .featured > div > div:first-child {
+    min-width: 33%;
+    height: auto;
+  }
+
+  .featured > div > div:nth-child(2) {
+    padding: 40px;
+  }
+}
