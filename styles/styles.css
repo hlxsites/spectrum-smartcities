@@ -170,6 +170,12 @@ a:hover {
   color: var(--link-hover-color);
 }
 
+a.file-download > span {
+  display: inline-block;
+  transform: rotate(90deg);
+  color: #007bff;
+}
+
 /* buttons */
 a.button:any-link, button {
   font-family: var(--body-font-family);

@@ -109,6 +109,12 @@ export default {
       }
     });
 
+    /** Fix Arrows */
+    const arrowImgEls = main.querySelectorAll('img[src="https://assets.spectrumenterprise.com/is/image/spectrument/arrow-navy"]');
+    arrowImgEls.forEach((arrowImgEl) => {
+      arrowImgEl.replaceWith(':arrowdown:');
+    });
+
     /** Fix Headers */
     const fakeHeaderEls = document.querySelectorAll('.h1');
     fakeHeaderEls.forEach((fakeHeaderEl) => {
@@ -148,8 +154,31 @@ export default {
       sectionEl.innerHTML = featuredBlockEl.outerHTML;
     });
 
+    /** Related Resources Section */
+    const relatedResourceListEls = main.querySelectorAll('.relatedResources .resources');
+    relatedResourceListEls.forEach((resourceListEl) => {
+      const cells = [
+        ['Cards'],
+      ];
+      const resourceEls = resourceListEl.querySelectorAll('.relatedResourceItem');
+      resourceEls.forEach((resourceEl) => {
+        if (resourceEl.children.length) {
+          const textEls = document.createElement('div');
+          textEls.append(resourceEl.querySelector('.related-resource-title') || '');
+          textEls.append(resourceEl.querySelector('.related-resource-subtext') || '');
+          textEls.append(resourceEl.querySelector('a') || '');
+          const row = [
+            (resourceEl.querySelector('img') || ''),
+            textEls,
+          ];
+          cells.push(row);
+        }
+      });
+      resourceListEl.innerHTML = WebImporter.DOMUtils.createTable(cells, document).outerHTML;
+    });
+
     /** Resources Section */
-    const resourceListEls = main.querySelectorAll('.resources');
+    const resourceListEls = main.querySelectorAll('.featuredRow .resources');
     resourceListEls.forEach((resourceListEl) => {
       const cells = [
         ['Cards'],

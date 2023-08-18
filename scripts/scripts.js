@@ -215,6 +215,7 @@ function decorateFileDownloadLinks(mainEl) {
     if (linkEl.href.endsWith('.pdf')) {
       linkEl.classList.add('file-download');
       linkEl.setAttribute('target', '_self');
+      linkEl.append(createEl('span', {}, '➔'));
     }
   });
 }
@@ -252,8 +253,8 @@ function buildAutoBlocks(mainEl) {
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(mainEl) {
   // hopefully forward compatible button decoration
-  decorateButtons(mainEl);
   decorateFileDownloadLinks(mainEl);
+  decorateButtons(mainEl);
   decorateIcons(mainEl);
   buildAutoBlocks(mainEl);
   decorateSections(mainEl);
