@@ -1,3 +1,4 @@
+import { checkLink } from '../blocks/embed/embed.js';
 import {
   sampleRUM,
   buildBlock,
@@ -100,23 +101,6 @@ async function loadTemplate(doc, theTemplateName) {
   }
 }
 
-/**
- * Builds hero block and prepends to main in a new section.
- * @param {Element} mainEl The container element
- */
-function buildHeroBlock(mainEl) {
-  const picture = mainEl.querySelector(':scope > div:first-child picture');
-  if (picture) {
-    const h1 = mainEl.querySelector('h1');
-    // eslint-disable-next-line no-bitwise
-    if (h1 && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-      const section = document.createElement('div');
-      section.append(buildBlock('hero', { elems: [picture, h1] }));
-      mainEl.prepend(section);
-    }
-  }
-}
-
 function buildCarouselBlock(mainEl) {
   const columnEls = document.querySelectorAll('.columns > div > div');
   columnEls.forEach((columnEl) => {
@@ -163,6 +147,15 @@ function buildRoundCardsBlock(mainEl) {
   });
 }
 
+function buildEmbedBlock(mainEl) {
+  const mediaLinkEls = mainEl.querySelectorAll('a');
+  mediaLinkEls.forEach((mediaLinkEl) => {
+    if (checkLink(mediaLinkEl.href)) {
+      buildBlock('embed', { elems: [mediaLinkEl] });
+    }
+  });
+}
+
 /**
  * load fonts.css and set a session storage flag
  */
@@ -176,12 +169,7 @@ async function loadFonts() {
 }
 
 function bindEvents() {
-  // if (isDesktop) {
-  //   document.addEventListener(SCROLL, () => {
-  //     alreadyRevealed = true;
-  //     revealBackground();
-  //   });
-  // }
+  // Put any Event Listners you need to attach here
 }
 
 function decorateButtons(element) {
@@ -226,7 +214,7 @@ function decorateFileDownloadLinks(mainEl) {
  */
 function buildAutoBlocks(mainEl) {
   try {
-    // buildHeroBlock(main);
+    // buildEmbedBlock(mainEl);
     buildCarouselBlock(mainEl);
     buildRoundCardsBlock(mainEl);
   } catch (error) {
@@ -250,11 +238,9 @@ function buildAutoBlocks(mainEl) {
  * Decorates the main element.
  * @param {Element} mainEl The main element
  */
-// eslint-disable-next-line import/prefer-default-export
 export function decorateMain(mainEl) {
-  // hopefully forward compatible button decoration
   decorateFileDownloadLinks(mainEl);
-  decorateButtons(mainEl);
+  decorateButtons(mainEl); // hopefully forward compatible button decoration
   decorateIcons(mainEl);
   buildAutoBlocks(mainEl);
   decorateSections(mainEl);

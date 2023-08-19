@@ -21,7 +21,10 @@ export default async function decorate(blockEl) {
   const scrollEl = carouselEl.querySelector('.scroll');
   const indicatorsEl = carouselEl.querySelector('.indicators');
 
-  pictureEls.forEach((pictureEl) => {
+  pictureEls.forEach((pictureEl, i) => {
+    if (i === 0) {
+      pictureEl.querySelector('img').setAttribute('fetchpriority', 'high');
+    }
     createEl('li', {
       class: 'scroll-item-outer',
     }, `
@@ -150,16 +153,17 @@ export default async function decorate(blockEl) {
   });
 
   scroller.addEventListener('scroll', debounce(() => {
-    let index = Math.round((scroller.scrollLeft / scroller.scrollWidth) * 4);
+    const index = Math.round((scroller.scrollLeft / scroller.scrollWidth) * 4);
     setAriaPressed(index);
   }, 200));
 
   function advanceSlide(i) {
-    setAriaPressed(i);
-    const scrollLeft = Math.floor(scroller.scrollWidth * (i / 4));
+    let s = i;
+    setAriaPressed(s);
+    const scrollLeft = Math.floor(scroller.scrollWidth * (s / 4));
     smoothScroll(scroller, scrollLeft, true);
     setTimeout(() => {
-      advanceSlide((i >= indicators.length) ? 0 : (i += 1));
+      advanceSlide((s >= indicators.length) ? 0 : (s += 1));
     }, 3000);
   }
 
