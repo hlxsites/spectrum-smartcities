@@ -19,7 +19,7 @@ export default async function decorate(blockEl) {
     </div>
     <div class="form-row">
       <div class="field">
-        <input id="email" name="email" type="email" placeholder="Email Address" required="true"/>
+        <input id="email" name="emailAddress" type="email" placeholder="Email Address" required="true"/>
       </div>
     </div>
     <div class="form-row">
@@ -32,10 +32,11 @@ export default async function decorate(blockEl) {
         <button>send</button>
       </div>
     </div>
+    <input type="hidden" value="/content/spectrum/smartcities/en/home/contact/jcr:content/root/content/panelcontainer_2000136797/col2/contactform" name="resourcePage" disabled="disabled">
   `;
   const formEl = createEl('form', {
     method: 'POST',
-    action: '/bin/spectrum/smartcities/contactForm',
+    action: 'https://spectrumsmartcities.com/bin/spectrum/smartcities/contactForm',
   }, formBody, blockEl);
 
   const submitButtonEl = formEl.querySelector('button');
