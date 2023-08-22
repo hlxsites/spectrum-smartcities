@@ -98,7 +98,6 @@ main .round-cards > div img {
     padding: 0;
     border-radius: 0;
     max-height: 80px;
-    width: auto;
   }
 
   main .round-cards > div a {

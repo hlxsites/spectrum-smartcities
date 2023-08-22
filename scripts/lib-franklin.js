@@ -363,7 +363,7 @@ export function decorateSections(main) {
       sectionMeta.parentNode.remove();
     }
 
-    const sectionBGIMG = section.dataset['backgroundImage'];
+    const sectionBGIMG = section.dataset.backgroundImage;
     if (sectionBGIMG) {
       section.style.backgroundImage = `url(${sectionBGIMG})`;
       section.classList.add('with-bg');
