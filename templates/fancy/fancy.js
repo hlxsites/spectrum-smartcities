@@ -80,6 +80,6 @@ export default async function decorate(doc) {
       if (!alreadyRevealed) {
         revealBackground();
       }
-    }, 2000);
+    }, 4000);
   }
 }

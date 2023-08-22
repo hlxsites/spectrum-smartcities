@@ -32,7 +32,7 @@ export default async function decorate(blockEl) {
         <button>send</button>
       </div>
     </div>
-    <input type="hidden" value="/content/spectrum/smartcities/en/home/contact/jcr:content/root/content/panelcontainer_2000136797/col2/contactform" name="resourcePage" disabled="disabled">
+    <input type="hidden" value="/contact/contactform" name="resourcePage" disabled="disabled">
   `;
   const formEl = createEl('form', {
     method: 'POST',
