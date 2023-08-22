@@ -421,6 +421,7 @@ main .faq h3 {
   font-size: 20px;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 main .faq p {
   font-size: 14px;
 }
