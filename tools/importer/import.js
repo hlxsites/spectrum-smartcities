@@ -169,8 +169,8 @@ export default {
     /** Featured Block */
     const featuredSectionEls = main.querySelectorAll('.featured-section-wrapper');
     featuredSectionEls.forEach((sectionEl) => {
-      const featuredImageEl = WebImporter.DOMUtils.replaceBackgroundByImg(
-        sectionEl.querySelector('.featured-main-image'), document);
+      const featuredImageEl = WebImporter.DOMUtils
+        .replaceBackgroundByImg(sectionEl.querySelector('.featured-main-image'), document);
       const cells = [
         ['Featured'],
         [featuredImageEl, sectionEl.querySelector('.featured-section-text')],

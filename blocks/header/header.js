@@ -3,7 +3,6 @@ import {
   decorateIcons,
 } from '../../scripts/lib-franklin.js';
 import {
-  isDesktop,
   createEl,
 } from '../../scripts/scripts.js';
 

@@ -143,7 +143,7 @@ export default async function decorate(blockEl) {
   }
 
   indicators.forEach((indicator, i) => {
-    indicator.addEventListener('click', e => {
+    indicator.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       setAriaPressed(i);

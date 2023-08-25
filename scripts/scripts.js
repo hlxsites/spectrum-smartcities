@@ -6,7 +6,6 @@ import {
   loadFooter,
   decorateIcons,
   decorateSections,
-  decorateBlock,
   decorateBlocks,
   decorateTemplateAndTheme,
   waitForLCP,
@@ -57,6 +56,7 @@ export async function getJSON(pathToJSON) {
     const resp = await fetch(pathToJSON);
     dataObj = await resp.json();
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Fetching JSON failed', error);
   }
   return dataObj;
@@ -101,6 +101,7 @@ async function loadTemplate(doc, theTemplateName) {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 function buildCarouselBlock(mainEl) {
   const columnEls = document.querySelectorAll('.columns > div > div');
   columnEls.forEach((columnEl) => {
@@ -124,6 +125,7 @@ function buildCarouselBlock(mainEl) {
   });
 }
 
+// eslint-disable-next-line no-unused-vars
 function buildRoundCardsBlock(mainEl) {
   const columnEls = document.querySelectorAll('.columns');
   columnEls.forEach((columnEl) => {
@@ -147,6 +149,7 @@ function buildRoundCardsBlock(mainEl) {
   });
 }
 
+// eslint-disable-next-line no-unused-vars
 function buildEmbedBlock(mainEl) {
   const mediaLinkEls = mainEl.querySelectorAll('a');
   mediaLinkEls.forEach((mediaLinkEl) => {
